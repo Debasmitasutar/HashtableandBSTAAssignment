@@ -55,6 +55,21 @@ public class MyHashMap<K,V>{
         } else
             myNode.setValue(value);
     }
+    public void remove(K key) {
+        MyMapNode<K, V> currentNode = head;
+        MyMapNode<K, V> previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(key)) {
+            head = currentNode.getNext();
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(key))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null)
+            previousNode.next = currentNode.next;
+        if (currentNode == null)
+            System.out.println("Word not found");
+    }
 
     // This implements hash function to find index for a key
     public int getBucketIndex(K key) {
